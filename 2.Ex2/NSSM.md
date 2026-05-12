@@ -1,4 +1,4 @@
-## 1. Создание PowerShell-скрипта
+## Создание PowerShell-скрипта
 
 Для мониторинга новых процессов был создан PowerShell-скрипт `process-monitor.ps1` в каталоге `C:\Temp`.
 
@@ -7,7 +7,7 @@
 ![Содержимое process-monitor.ps1](screenshots/process-monitor-script.png)
 
 
-## 2. Создание службы через NSSM
+## Создание службы через NSSM
 
 Для запуска PowerShell-скрипта в виде службы Windows использовалась утилита NSSM (Non-Sucking Service Manager).
 
@@ -20,7 +20,7 @@
 ![3.ProccessMonitorCreated](screenshots/3.ProccessMonitorCreated.png)
 
 
-## 3. Запуск службы
+## Запуск службы
 
 После создания служба `ProcessMonitor` была запущена командой:
 
@@ -46,7 +46,7 @@ type C:\Temp\process-log.txt
 ![4.StartProccesMonitor](screenshots/4.CheckLogs.png)
 
 
-## 5. Остановка и удаление службы
+## Остановка и удаление службы
 
 После завершения мониторинга служба `ProcessMonitor` была остановлена и удалена с помощью `nssm`.
 
@@ -68,3 +68,27 @@ The specified service does not exist as an installed service.
 Это подтверждает, что служба была успешно удалена
 
 ![5.StopAndRemovingProccessMonitoring](screenshots/5.StopAndRemovingProccessMonitoring.png)
+
+## Поиск событий создания службы в Event Viewer
+
+После создания службы `ProcessMonitor` были проверены системные журналы Windows.
+
+Для этого был открыт:
+
+`Event Viewer → Windows Logs → System`
+
+И выполнена фильтрация по `Event ID 7045`.
+
+Событие `7045` от источника `Service Control Manager` подтверждает установку новой службы в системе.
+
+В событии указаны следующие параметры:
+
+- **Service Name:** `ProcessMonitor`
+- **Service File Name:** `C:\Users\user\Downloads\nssm-2.24\nssm-2.24\win64\nssm.exe`
+- **Service Type:** `user mode service`
+- **Service Start Type:** `auto start`
+- **Service Account:** `LocalSystem`
+
+Это подтверждает, что служба `ProcessMonitor` была успешно создана и зарегистрирована через `nssm.exe`.
+
+![Event ID 7045 — создание службы](screenshots/6.7045.png)
