@@ -18,3 +18,16 @@
 ```
 
 ![3.ProccessMonitorCreated](screenshots/3.ProccessMonitorCreated.png)
+
+
+## 3. Запуск службы
+
+После создания служба `ProcessMonitor` была запущена командой:
+
+```cmd
+sc start ProcessMonitor
+```
+
+Команда sc start перевела службу в состояние START_PENDING, что означает успешный запуск PowerShell-скрипта
+
+![4.StartProccesMonitor](screenshots/4.StartProccesMonitor.png)
