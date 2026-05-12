@@ -31,3 +31,40 @@ sc start ProcessMonitor
 Команда sc start перевела службу в состояние START_PENDING, что означает успешный запуск PowerShell-скрипта
 
 ![4.StartProccesMonitor](screenshots/4.StartProccesMonitor.png)
+
+
+После запуска службы были открыты приложения `Notepad` и `Calculator`.
+
+Для просмотра содержимого лог-файла использовалась команда:
+
+```cmd
+type C:\Temp\process-log.txt
+```
+
+В лог-файле появились новые процессы, включая notepad и win32calc, что подтверждает корректную работу скрипта
+
+![4.StartProccesMonitor](screenshots/4.CheckLogs.png)
+
+
+## 5. Остановка и удаление службы
+
+После завершения мониторинга служба `ProcessMonitor` была остановлена и удалена с помощью `nssm`.
+
+```cmd
+sc stop ProcessMonitor
+
+"C:\Users\user\Downloads\nssm-2.24\nssm-2.24\win64\nssm.exe" remove ProcessMonitor confirm
+
+sc query ProcessMonitor
+```
+
+Команда `sc stop ProcessMonitor` остановила службу
+Команда `nssm remove ProcessMonitor confirm` удалила службу из системы.
+
+Повторная проверка с помощью `sc query ProcessMonitor` вернула ошибку 1060:
+```cmd
+The specified service does not exist as an installed service.
+```
+Это подтверждает, что служба была успешно удалена
+
+![5.StopAndRemovingProccessMonitoring.png](5.StopAndRemovingProccessMonitoring.png)
