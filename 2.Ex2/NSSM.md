@@ -67,4 +67,4 @@ The specified service does not exist as an installed service.
 ```
 Это подтверждает, что служба была успешно удалена
 
-![5.StopAndRemovingProccessMonitoring](5.StopAndRemovingProccessMonitoring.png)
+![5.StopAndRemovingProccessMonitoring](screenshots/5.StopAndRemovingProccessMonitoring.png)
